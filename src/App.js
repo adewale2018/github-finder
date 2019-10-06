@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
+import SearchForm from './components/users/form/SearchForm';
 import './App.css';
 
 
@@ -26,6 +27,7 @@ class App extends Component {
       <div>
         <Navbar />
         <div className="container">
+          <SearchForm />
           <Users loading={loading} users={users}/>
         </div>
       </div>
