@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 
-const SearchForm = () => {
+const SearchForm = ({ searchUsers }) => {
   const [state, setState] = useState("");
+
   const handleChange = e => setState(e.target.value);
+
   const onSubmit = e => {
     e.preventDefault();
-    console.log(state);
+    searchUsers(state);
+    setState("");
   }
 
   return (
@@ -17,6 +20,7 @@ const SearchForm = () => {
           placeholder="Search Users..."
           value={state}
           onChange={handleChange} 
+          required="require"
         />
         <input 
           type="submit" 
