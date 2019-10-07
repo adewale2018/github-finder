@@ -2,23 +2,26 @@ import React, { Component, Fragment } from 'react';
 import Spinner from './../layout/Spinner';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Repo from './../repos/Repo';
 
 
 export class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepos(this.props.match.params.login);
   }
 
   static propTypes = {
     loading: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
-    getUser: PropTypes.func.isRequired
+    repos: PropTypes.array.isRequired,
+    getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired
   } 
 
   render() {
     const { 
             name, 
-            email,
             avatar_url, 
             location, 
             bio, 
@@ -32,7 +35,7 @@ export class User extends Component {
             hireable,
             company
           } = this.props.user;
-          const { loading } = this.props;
+          const { loading, repos } = this.props;
           if(loading) return <Spinner />
     return (
       <Fragment>
@@ -44,11 +47,11 @@ export class User extends Component {
         <div className="card grid-2">
           <div className="all-center">
             <img src={avatar_url} alt={name} className="round-img" style={{width: "150px"}} />
-            <h1>{name}</h1>
-            <p>{location && (<Fragment>
+            <h1 className="text-success">{name}</h1>
+            {location && (<Fragment>
               <h3>Location</h3>
               <p>{location}</p>
-            </Fragment>)}</p>
+            </Fragment>)}
           </div>
           <div>
             {bio && (<Fragment>
@@ -56,7 +59,7 @@ export class User extends Component {
               <p>{bio}</p>
             </Fragment>
             )}
-            <a href={html_url} className="btn btn-dark my-1">Visit Github Profile</a>
+            <a href={html_url} className="btn btn-dark my-1" target="_blank" rel="noopener noreferrer" >Visit Github Profile</a>
             <ul>
               <li>
                 {login && (<Fragment>
@@ -70,7 +73,7 @@ export class User extends Component {
               </li>
               <li>
                 {blog && (<Fragment>
-                  <strong>Website:</strong> {blog}
+                  <strong>Website:</strong> <a href={blog} target="_blank" rel="noopener noreferrer" >{blog}</a>
                 </Fragment>)}
               </li>
             </ul>
@@ -82,6 +85,7 @@ export class User extends Component {
           <div className="badge badge-dark">Public Repos: {public_repos}</div>
           <div className="badge badge-light">Public Gists: {public_gists}</div>
         </div>
+        <Repo repos={repos} />
       </Fragment>
     );
   }
