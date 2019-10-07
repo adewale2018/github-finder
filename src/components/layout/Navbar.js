@@ -8,7 +8,7 @@ const Navbar = ({ icon, title }) => {
       <header>
         <nav className="navbar bg-primary">
           <h1>
-            <i className={icon}/>{title}
+            <i className={icon} style={{marginRight: '1rem'}}/>{title}
           </h1>
           <ul>
             <li>
