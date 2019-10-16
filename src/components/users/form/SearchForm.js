@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const SearchForm = ({ searchUsers, clearUsers, showClear, setAlert }) => {
   const [state, setState] = useState("");
@@ -9,34 +8,38 @@ const SearchForm = ({ searchUsers, clearUsers, showClear, setAlert }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if(state === "") {
-      setAlert('Please enter something in the search bar!', 'danger');
+    if (state === "") {
+      setAlert("Please enter something in the search bar!", "danger");
     } else {
       searchUsers(state);
       setState("");
     }
-  }
+  };
 
   return (
     <div>
-      <form className="form" onSubmit={onSubmit}>
-        <input 
-          type="text" 
-          name="user" 
-          placeholder="Search Users..."
+      <form className='form' onSubmit={onSubmit}>
+        <input
+          type='text'
+          name='user'
+          placeholder='Search Users...'
           value={state}
           onChange={handleChange}
         />
-        <input 
-          type="submit" 
-          value="Search" 
-          className="btn btn-dark btn-block" 
+        <input
+          type='submit'
+          value='Search'
+          className='btn btn-dark btn-block'
         />
       </form>
-     {showClear &&  <button className="btn btn-block btn-light" onClick={clearUsers}>Clear</button>}
+      {showClear && (
+        <button className='btn btn-block btn-light' onClick={clearUsers}>
+          Clear
+        </button>
+      )}
     </div>
   );
-}
+};
 
 SearchForm.propTypes = {
   searchUsers: PropTypes.func.isRequired,
