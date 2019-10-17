@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import AlertContext from './../../contexts/alert/alertContext';
+import React, { useContext } from "react";
+import AlertContext from "./../../contexts/alert/alertContext";
 
 const Alert = () => {
   const alertContext = useContext(AlertContext);
@@ -11,6 +11,6 @@ const Alert = () => {
       </div>
     )
   );
-}
+};
 
 export default Alert;

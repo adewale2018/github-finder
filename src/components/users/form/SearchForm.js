@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import GithubContext from '../../../contexts/github/githubContext';
-import AlertContext from './../../../contexts/alert/alertContext';
+import GithubContext from "../../../contexts/github/githubContext";
+import AlertContext from "./../../../contexts/alert/alertContext";
 
 const SearchForm = () => {
   const githubContext = useContext(GithubContext);
@@ -36,7 +36,7 @@ const SearchForm = () => {
           className='btn btn-dark btn-block'
         />
       </form>
-      { githubContext.users.length > 0 && (
+      {githubContext.users.length > 0 && (
         <button
           className='btn btn-block btn-light'
           onClick={githubContext.clearUsers}
@@ -47,6 +47,5 @@ const SearchForm = () => {
     </div>
   );
 };
-
 
 export default SearchForm;
